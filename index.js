@@ -10,7 +10,10 @@ exports.DOMParser.prototype.parseFromString = function(str, mime) {
     var doc = new dom.Document(),
         parser = new xml.SaxParser(handlersForDocument(doc));
 
-    parser.parseString(str);
+    if (!/^\s*$/.test(str)) {
+        parser.parseString(str);
+    }
+
     return doc;
 }
 

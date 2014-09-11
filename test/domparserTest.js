@@ -75,6 +75,18 @@ exports['should parse non-namespace attributes'] = function(test) {
     test.done();
 }
 
+exports['should be able to parse invalid xml'] = function(test) {
+    var input = 'yuck';
+    var doc = dp.parseFromString(input, 'text/xml');
+    test.equal(doc.firstChild, null);
+
+    var input = '';
+    var doc = dp.parseFromString(input, 'text/xml');
+    test.equal(doc.firstChild, null);
+
+    test.done();
+}
+
 exports['should parse attributes with namespace uri'] = function(test) {
     var input = '<hello xmlns:aloud="http://example.com/" aloud:say="world"/>';
     var doc = dp.parseFromString(input, 'text/xml');
